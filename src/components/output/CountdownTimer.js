@@ -1,10 +1,10 @@
 import React from "react";
 import "./CountdownTimer.css";
 
-const CountdownTimer = ({ countdownData }) => {
+const CountdownTimer = ({ countdownData, errorMessage }) => {
   return (
     <>
-      {!(countdownData.message.length > 0) ? (
+      {!(countdownData.message.length > 0) && !errorMessage ? (
         <div>
           <div className="countdown-wrapper">
             <div className="countdown-box">
@@ -26,7 +26,9 @@ const CountdownTimer = ({ countdownData }) => {
           </div>
         </div>
       ) : (
-        <div className="highlight">{countdownData.message}</div>
+        <div className="highlight">
+          {countdownData ? countdownData.message : errorMessage}
+        </div>
       )}
     </>
   );

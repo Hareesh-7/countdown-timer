@@ -13,6 +13,7 @@ const HomePage = () => {
     message: "",
   });
   const [intervalId, setIntervalId] = useState(null);
+  // const [errorMessage, setErrorMessage] = useState("");
 
   const startCountdown = (targetDateTime) => {
     clearInterval(intervalId);
@@ -30,6 +31,7 @@ const HomePage = () => {
         if (days <= 99 && hours <= 23 && minutes <= 59 && seconds <= 59) {
           setIsCountDownActive(true);
           setCountdownData({ days, hours, minutes, seconds, message: "" });
+          // setErrorMessage("");
         } else {
           setCountdownData({
             days: 0,
@@ -38,6 +40,7 @@ const HomePage = () => {
             seconds: 0,
             message: "Selected time is more than 100 days",
           });
+          // setErrorMessage("");
         }
       } else {
         setIsCountDownActive(false);
@@ -72,7 +75,20 @@ const HomePage = () => {
       seconds: 0,
       message: "",
     });
+    // setErrorMessage("");
   };
+
+  // const handleError = (message) => {
+  //   setErrorMessage(message);
+  //   setIsCountDownActive(false);
+  //   setCountdownData({
+  //     days: 0,
+  //     hours: 0,
+  //     minutes: 0,
+  //     seconds: 0,
+  //     message: "null",
+  //   });
+  // };
 
   return (
     <div className="home-container">
@@ -83,8 +99,11 @@ const HomePage = () => {
         isCountDownActive={isCountDownActive}
         onDateSelect={handleDateSelect}
         onCancel={cancelTimer}
+        // onError={handleError}
       />
-      <CountdownTimer countdownData={countdownData} />
+      <CountdownTimer countdownData={countdownData} 
+      // errorMessage={errorMessage} 
+      />
     </div>
   );
 };
